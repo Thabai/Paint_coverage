@@ -1,27 +1,44 @@
 package com.paint;
 
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Main {
 
     public static void main(String[] args) {
+        int paintSqm;
+        double myArea;
 
+        Scanner PaintWantedCheck = new Scanner(System.in);
+        System.out.println("Which paint would you like quoting for? Choose 1-4");
         Paint[] st = new Paint[4];
-        //Populating the array
-        st[0] = new Paint("Dulux Matt", 26.00, 10);
-        st[1] = new Paint("Dulux Silk", 21.00, 12);
-        st[2] = new Paint("Farrow & Ball Matt", 28.00, 9);
-        st[3] = new Paint("Farrow & Ball Silk", 30.00, 15);
 
-                //Invoking display method on each object in the array
+        st[0] = new Paint("Dulux Matt", 26.00);
+        st[1] = new Paint("Dulux Silk", 21.00);
+        st[2] = new Paint("Farrow & Ball Matt", 28.00);
+        st[3] = new Paint("Farrow & Ball Silk", 30.00);
+
         for (Paint paint : st) {
-            paint.printPaint();
-            System.out.println(" ");
+            System.out.println(paint.printPaint());
         }
 
 
-        double paintSqm = 10;
-        double myArea;
+        switch (PaintWantedCheck.nextInt()) {
+            case 1: System.out.println("You have chosen " + st[0].printPaint());
+                paintSqm = 10;
+                break;
+            case 2: System.out.println("You have chosen " + st[1].printPaint());
+                paintSqm = 12;
+                break;
+            case 3: System.out.println("You have chosen " + st[2].printPaint());
+                paintSqm = 9;
+                break;
+            case 4: System.out.println("You have chosen " + st[3].printPaint());
+            paintSqm = 15;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + PaintWantedCheck.nextInt());
+        }
 
         Scanner roomShapeCheck = new Scanner(System.in);
         System.out.println("Do you have a standard shaped room? (true or false)");
@@ -35,7 +52,9 @@ public class Main {
             System.out.println("Enter width of room in m");
             myArea = getRegularArea(myHeight, myLength, myWidth);
         } else {
-            myArea = getIrregularArea();
+            Scanner wallHeight = new Scanner(System.in);
+            System.out.println("Enter height of walls");
+            myArea = getIrregularArea(wallHeight);
         }
         Scanner roomPaint = new Scanner(System.in);
         System.out.println("Is this a touch-up job? (true or false)");
@@ -62,10 +81,8 @@ public class Main {
         return myArea;
     }
 
-    private static double getIrregularArea() {
+    private static double getIrregularArea(Scanner wallHeight) {
         double myArea = 0;
-        Scanner wallHeight = new Scanner(System.in);
-        System.out.println("Enter height of walls");
         double inputHeight = wallHeight.nextDouble();
         double inputLength;
 
