@@ -1,11 +1,14 @@
 package com.paint;
 
     public class Paint {
+        private int id;
         private String name;
         private double price;
         private double coverage;
 
-        public Paint(String name, double price, double coverage) {
+
+        public Paint(int id, String name, double price, double coverage) {
+            this.id = id;
             this.price = price;
             this.coverage = coverage;
             this.name = name;
@@ -15,11 +18,16 @@ package com.paint;
             return this.name + " £" + this.price + " " + this.coverage + "sqm " ;
         }
 
-        public double setCoverage() {
-            return this.coverage;
-        }
 
-        public double setPrice() {
+        public double getPrice() {
             return this.price;
         }
-}
+
+        public String getName() {
+            return this.name;
+        }
+
+        public double getCoverage() {
+            return this.coverage;
+        }
+    }
