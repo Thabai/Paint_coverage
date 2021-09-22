@@ -1,6 +1,7 @@
 package com.paint;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -12,46 +13,41 @@ public class Main {
         double inputLength;
         double totalArea;
 
-//        HashMap<String, String, String> capitalCities = new HashMap<String, String>();
-//        capitalCities.put("England", "Ln", "Bo");
-//        capitalCities.put("Germany", "Berlin", "Boo");
-//        capitalCities.put("Norway", "Oslo", "Boo");
-//        capitalCities.put("USA", "Washington DC", "Boo");
-//        System.out.println(capitalCities.get("England"));
-
         Scanner PaintWantedCheck = new Scanner(System.in);
         System.out.println("Which paint would you like quoting for? (Choose 1-4)");
-        Paint[] st = new Paint[4];
 
-        st[0] = new Paint("Dulux Matt", 26.00, 10);
-        st[1] = new Paint("Dulux Silk", 21.00, 18);
-        st[2] = new Paint("Farrow & Ball Matt", 28.00, 15);
-        st[3] = new Paint("Farrow & Ball Silk", 30.00, 25);
+        List<Paint> availablePaint = new ArrayList();
+        availablePaint.add(new Paint("Dulux Matt", 26.00, 10));
+        availablePaint.add(new Paint("Dulux Silk", 21.00, 18));
+        availablePaint.add(new Paint("Farrow & Ball Matt", 28.00, 15));
+        availablePaint.add(new Paint("Farrow & Ball Silk", 30.00, 25));
 
-        for (Paint paint : st) {
-            System.out.println(paint.printPaint());
+        for (Paint a: availablePaint) {
+            System.out.println(a.printPaint());
         }
 
-
         switch (PaintWantedCheck.nextInt()) {
-            case 1: System.out.println("You have chosen " + st[0].printPaint());
-                paintSqm = st[0].coverage;
-                paintPrice = st[0].price;
-                break;
-            case 2: System.out.println("You have chosen " + st[1].printPaint());
-                paintSqm = st[1].coverage;
-                paintPrice = st[1].price;
-                break;
-            case 3: System.out.println("You have chosen " + st[2].printPaint());
-                paintSqm = st[2].coverage;
-                paintPrice = st[2].price;
-                break;
-            case 4: System.out.println("You have chosen " + st[3].printPaint());
-                paintSqm = st[3].coverage;
-                paintPrice = st[3].price;
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + PaintWantedCheck.nextInt());
+            case 1 -> {
+                System.out.println("You have chosen " + availablePaint.get(0).printPaint());
+                paintSqm = availablePaint.get(0).setCoverage();
+                paintPrice = availablePaint.get(0).setPrice();
+            }
+            case 2 -> {
+                System.out.println("You have chosen " + availablePaint.get(1).printPaint());
+                paintSqm = availablePaint.get(1).setCoverage();
+                paintPrice = availablePaint.get(1).setPrice();
+            }
+            case 3 -> {
+                System.out.println("You have chosen " + availablePaint.get(2).printPaint());
+                paintSqm = availablePaint.get(2).setCoverage();
+                paintPrice = availablePaint.get(2).setPrice();
+            }
+            case 4 -> {
+                System.out.println("You have chosen " + availablePaint.get(3).printPaint());
+                paintSqm = availablePaint.get(3).setCoverage();
+                paintPrice = availablePaint.get(3).setPrice();
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + PaintWantedCheck.nextInt());
         }
 
         Scanner roomShapeCheck = new Scanner(System.in);
