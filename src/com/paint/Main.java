@@ -82,6 +82,7 @@ public class Main {
             Scanner wallLengths = new Scanner(System.in);
             System.out.println("Enter length of wall number " + i);
             room.setLength(wallLengths.nextDouble());
+            System.out.println(room.getArea());
             myArea += room.getArea();
         }
         return myArea;
